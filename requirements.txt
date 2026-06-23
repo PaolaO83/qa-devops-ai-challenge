@@ -1,0 +1,38 @@
+# Dependencias del Proyecto
+# Instalar con: pip install -r requirements.txt
+
+# Pruebas
+pytest==7.4.0
+pytest-cov==4.1.0
+pytest-xdist==3.3.1
+
+# API Testing
+requests==2.31.0
+httpx==0.24.1
+
+# UI Testing (descomenta según necesidad)
+# selenium==4.10.0
+# playwright==1.37.0
+# webdriver-manager==3.8.6
+
+# Performance Testing
+# k6 se instala por separado: https://k6.io/docs/getting-started/installation/
+# jmeter se instala por separado: https://jmeter.apache.org/
+
+# Utilidades
+python-dotenv==1.0.0
+pydantic==2.0.0
+pyyaml==6.0
+
+# Reporte y Logging
+allure-pytest==2.13.2
+loguru==0.7.0
+
+# Formateo y Linting
+black==23.7.0
+flake8==6.0.0
+isort==5.12.0
+pylint==2.17.4
+
+# Pre-commit hooks (opcional)
+pre-commit==3.3.3
