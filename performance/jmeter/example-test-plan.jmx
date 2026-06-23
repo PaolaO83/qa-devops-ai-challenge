@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Ejemplo Plan de Pruebas de Rendimiento" enabled="true">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables de Usuario" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="BASE_URL" elementType="Argument">
+            <stringProp name="Argument.name">BASE_URL</stringProp>
+            <stringProp name="Argument.value">http://localhost:8000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="NUM_THREADS" elementType="Argument">
+            <stringProp name="Argument.name">NUM_THREADS</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="RAMP_TIME" elementType="Argument">
+            <stringProp name="Argument.name">RAMP_TIME</stringProp>
+            <stringProp name="Argument.value">60</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="LOOP_COUNT" elementType="Argument">
+            <stringProp name="Argument.name">LOOP_COUNT</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Grupo de Hilos" enabled="true">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Repetir" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">${LOOP_COUNT}</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${NUM_THREADS}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${RAMP_TIME}</stringProp>
+        <elementProp name="ThreadGroup.sample_error_action" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">-1</stringProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="GET /api/health" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables de Usuario" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${BASE_URL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/api/health</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Aserción de Respuesta" enabled="true">
+            <elementProp name="TestElements.test_elements" elementType="CollectionProperty">
+              <collectionProp name="Asserion.test_type">
+                <stringProp name="49586">1</stringProp>
+              </collectionProp>
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <collectionProp name="Asserion.test_type_strings">
+                <stringProp name="1786370522">1</stringProp>
+              </collectionProp>
+              <stringProp name="Asserion.test_field">Assertion.response_code</stringProp>
+            </elementProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Reporte Resumen" enabled="true">
+        <elementProp name="collectorProperties" elementType="CollectionProperty">
+          <stringProp name="filename">results/summary.jtl</stringProp>
+        </elementProp>
+        <stringProp name="TestPlan.comments">Reporte final de resultados</stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
